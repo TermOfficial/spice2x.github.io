@@ -806,27 +806,6 @@ int main_implementation(int argc, char *argv[]) {
     for (auto &sextet : options[launcher::Options::SextetStreamPort].values_text()) {
         sextet_devices.emplace_back(sextet);
     }
-#ifndef NO_SCARD
-    if (options[launcher::Options::HIDSmartCard].value_bool()) {
-        WINSCARD_CONFIG.cardinfo_callback = eamuse_scard_callback;
-        scard_threadstart();
-    }
-    if (options[launcher::Options::HIDSmartCardOrderFlip].value_bool()) {
-        WINSCARD_CONFIG.flip_order = true;
-    }
-    if (options[launcher::Options::HIDSmartCardOrderToggle].value_bool()) {
-        WINSCARD_CONFIG.toggle_order = true;
-    }
-    if (options[launcher::Options::HIDSmartCardIdConvert].is_active()) {
-        const auto text = options[launcher::Options::HIDSmartCardIdConvert].value_text();
-        if (text == "fix") {
-            WINSCARD_CONFIG.add_padding_to_old_cards = true;
-        } else if (text == "all") {
-            WINSCARD_CONFIG.add_padding_to_old_cards = true;
-            WINSCARD_CONFIG.add_padding_to_felica = true;
-        }
-    }
-#endif
     if (options[launcher::Options::CardIOHIDReaderOrderFlip].value_bool()) {
         CARDIO_RUNNER_FLIP = true;
     }
