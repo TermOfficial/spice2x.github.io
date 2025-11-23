@@ -20,9 +20,6 @@
 #include "cfg/screen_resize.h"
 #include "easrv/easrv.h"
 #include "external/cardio/cardio_runner.h"
-#ifndef NO_SCARD
-#include "external/scard/scard.h"
-#endif
 #include "games/game.h"
 #include "games/io.h"
 #include "games/bbc/bbc.h"
